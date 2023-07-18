@@ -44,6 +44,14 @@ spec:
     # canary increment step
     # percentage (0-100)
     stepWeight: 5
+    match:
+      - headers:
+          user-agent:
+            regex: ".*Firefox.*"
+            #regex: "^(?!.*(?:Chrome|Edge)).*Safari"
+      - headers:
+          cookie:
+            regex: "^(.*?;)?(type=insider)(;.*)?$"
     metrics:
       - name: error-rate
         templateRef:
@@ -67,7 +75,7 @@ spec:
         timeout: 30s
         metadata:
           type: bash
-          cmd: "curl -sd 'test' http://{{ template "podinfo.fullname" . }}-canary.{{ .Release.Namespace }}/token | grep token"
+          cmd: "curl -H 'Cookie: type=insider' -sd 'test' http://{{ .Values.canary.ingress.url}}/token | grep token"
       - name: load-test
         url: "http://{{ .Values.canary.loadtester.url }}"
         timeout: 5s
