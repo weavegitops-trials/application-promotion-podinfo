@@ -15,9 +15,9 @@ ui:
 canary:
   enabled: false
   loadtester:
-    url: "fabrikam-app-fabrikam-app-podinfo:80"
+    url: "istio-gateway.istio-system:80"
   ingress:
-    url: "fabrikam-app-fabrikam-app-podinfo:80"
+    url: "istio-gateway.istio-system:80"
 faults:
   delay: false
   error: false
