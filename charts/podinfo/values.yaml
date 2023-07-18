@@ -15,7 +15,7 @@ ui:
 canary:
   enabled: false
   loadtester:
-    url: "istio-gateway.istio-system:80"
+    url: "flagger-loadtester.fabrikam-app:80"
   ingress:
     url: "istio-gateway.istio-system:80"
 faults:
